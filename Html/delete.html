@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        /* Additional custom styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7fafc;
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        .form-section {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        .form-label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.25rem;
+            outline: none;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        .form-input:focus {
+            border-color: #667eea;
+        }
+
+        .form-button {
+            background-color: #f56565;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .form-button:hover {
+            background-color: #e53e3e;
+        }
+
+        .message {
+            margin-top: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .message-success {
+            color: #48bb78;
+        }
+
+        .message-error {
+            color: #f56565;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-gray-600 body-font">
+      <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+          <span class="ml-3 text-xl">Nako ka Library</span>
+        </a>
+        <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <a class="mr-5 hover:text-gray-900 cursor-pointer" href="displaybooks.html">Home</a>
+          <a class="mr-5 hover:text-gray-900 cursor-pointer" href="addbook.html">Add</a>
+          <a class="mr-5 hover:text-gray-900 cursor-pointer" href="search.html">Search</a>
+          <a class="mr-5 hover:text-gray-900 cursor-pointer" href="borrowed.html">Borrowed</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container mx-auto">
+        <div class="w-full max-w-md mx-auto">
+            <div class="form-section">
+                <h1 class="form-title text-center">Delete Book</h1>
+                <form id="deleteBookForm">
+                    <div class="mb-4">
+                        <label for="title" class="form-label block">Book Title:</label>
+                        <input type="text" id="title" name="title" class="form-input" placeholder="Enter the book title" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="form-button">Delete Book</button>
+                    </div>
+                </form>
+                <div id="message" class="message mt-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('deleteBookForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const title = document.getElementById('title').value;
+
+            // Send a DELETE request to the API endpoint
+            fetch(`http://127.0.0.1:8000/api/delete/book/${encodeURIComponent(title)}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Error in response');
+                }
+            })
+            .then(data => {
+                document.getElementById('message').innerHTML = `<div class="message-success">${data.message}</div>`;
+            })
+            .catch((error) => {
+                document.getElementById('message').innerHTML = `<div class="message-error">${error.message}</div>`;
+            });
+        });
+    </script>
+</body>
+</html>

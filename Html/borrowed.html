@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Borrowed Books</title>
+</head>
+<body>
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl">Nako ka Library</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+              <a class="mr-5 hover:text-gray-900  cursor-pointer" href="displaybooks.html">Home</a>
+              <a class="mr-5 hover:text-gray-900  cursor-pointer" href="addbook.html">Add</a>
+              <a class="mr-5 hover:text-gray-900  cursor-pointer" href="search.html">Search</a>
+              <a class="mr-5 hover:text-gray-900  cursor-pointer" href="borrowed.html">Borrowed</a>
+            </nav>
+        </div>
+    </header>
+    <section class="text-gray-600 body-font overflow-hidden">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-20">
+                <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Borrowed Books</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">Below are the books currently borrowed from the library.</p>
+            </div>
+            <div id="borrowedBooks" class="flex flex-wrap -m-4"></div>
+        </div>
+    </section>
+
+    <script>
+        // Fetch borrowed books data from the API
+        fetch('http://127.0.0.1:8000/api/display/borrowed/books')
+            .then(response => response.json())
+            .then(data => displayBorrowedBooks(data))
+            .catch(error => console.error('Error fetching borrowed books:', error));
+
+        // Display borrowed books on the page
+        function displayBorrowedBooks(borrowedBooks) {
+            const borrowedBooksDiv = document.getElementById('borrowedBooks');
+
+            if (borrowedBooks.length === 0) {
+                borrowedBooksDiv.innerHTML = `<h4 class="text-center">No borrowed books found.</h4>`;
+            } else {
+                borrowedBooks.forEach(book => {
+                    const bookDiv = document.createElement('div');
+                    bookDiv.classList.add('p-4', 'xl:w-1/4', 'md:w-1/2', 'w-full');
+                    bookDiv.innerHTML = `
+                        <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+                            <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-blue-500">Borrowed</h2>
+                            <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">${book.book_title}</h1>
+                            <p class="flex items-center text-gray-600 mb-2">
+                                <span> Borrower name: ${book.name}</span>
+                            </p>
+                        </div>
+                    `;
+                    borrowedBooksDiv.appendChild(bookDiv);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

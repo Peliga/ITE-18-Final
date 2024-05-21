@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Submit Book Data</title>
+</head>
+<body>
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Nako ka Library</span>
+          </a>
+          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a class="mr-5 hover:text-gray-900 cursor-pointer" href="displaybooks.html">Home</a>
+            <a class="mr-5 hover:text-gray-900 cursor-pointer" href="addbook.html">Add</a>
+            <a class="mr-5 hover:text-gray-900 cursor-pointer" href="delete.html">Delete</a>
+            <a class="mr-5 hover:text-gray-900  cursor-pointer" href="borrowed.html">Borrowed</a>
+          </nav>
+        </div>
+      </header>
+    <h1 class="text-center text-2xl font-bold mt-8">Add a New Book</h1>
+    <form id="bookForm" class="max-w-md mx-auto mt-4 p-4 bg-gray-100 rounded-lg shadow-md">
+        <div class="mb-4">
+            <label for="title" class="block text-gray-700 font-bold mb-2">Title:</label>
+            <input type="text" id="title" name="title" required class="w-full px-3 py-2 leading-tight focus:outline-none focus:shadow-outline border-2 border-gray-200 rounded-md">
+        </div>
+        <div class="mb-4">
+            <label for="author" class="block text-gray-700 font-bold mb-2">Author:</label>
+            <input type="text" id="author" name="author" required class="w-full px-3 py-2 leading-tight focus:outline-none focus:shadow-outline border-2 border-gray-200 rounded-md">
+        </div>
+        <div class="mb-4">
+            <label for="category" class="block text-gray-700 font-bold mb-2">Category:</label>
+            <input type="text" id="category" name="category" required class="w-full px-3 py-2 leading-tight focus:outline-none focus:shadow-outline border-2 border-gray-200 rounded-md">
+        </div>
+        <div class="mb-4">
+            <label for="description" class="block text-gray-700 font-bold mb-2">Description:</label>
+            <input type="text" id="description" name="description" required class="w-full px-3 py-2 leading-tight focus:outline-none focus:shadow-outline border-2 border-gray-200 rounded-md">
+        </div>
+        <div class="mb-4">
+            <label for="published_at" class="block text-gray-700 font-bold mb-2">Published At:</label>
+            <input type="date" id="published_at" name="published_at" required class="w-full px-3 py-2 leading-tight focus:outline-none focus:shadow-outline border-2 border-gray-200 rounded-md">
+        </div>
+        <button type="submit" class="w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600">Submit</button>
+    </form>
+    <footer class="text-gray-600 body-font">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Tailblocks</span>
+          </a>
+          <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2020 Tailblocks —
+            <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@knyttneve</a>
+          </p>
+          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <a class="text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500">
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                <circle cx="4" cy="4" r="2" stroke="none"></circle>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </footer>
+
+    <script>
+        document.getElementById('bookForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const published_at = document.getElementById('published_at').value;
+            const description = document.getElementById('description').value;
+            const category = document.getElementById('category').value;
+
+            // Create the data object
+            const data = { title, author, published_at,description,category };
+
+            // Send the data to the API
+            fetch('http://127.0.0.1:8000/api/add/book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Error in response');
+                }
+            })
+            .then(data => {
+                console.log('Success:', data);
+                alert('Book data submitted successfully!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error submitting book data');
+            });
+        });
+
+    </script>
+</body>
+</html>
